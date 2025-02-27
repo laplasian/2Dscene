@@ -1,0 +1,14 @@
+# ninja log v6
+134	281	7623319930740988	2Dscene.exe	587b4a8ac44e9fca
+24	168	7623434443375316	CMakeFiles/2Dscene.dir/main.c.obj	4a7e86efe9296438
+23	133	7623319929636028	CMakeFiles/2Dscene.dir/parcer.c.obj	d9b9d919152f7958
+28	185	7623434443424551	CMakeFiles/2Dscene.dir/new.c.obj	bcf4eb57b1831fec
+5	315	7623435870712399	build.ninja	4af95a368fee69a3
+32	151	7623434443465541	CMakeFiles/2Dscene.dir/cyrcle.c.obj	a3ed51dde9ac3618
+41	161	7623434443553476	CMakeFiles/2Dscene.dir/triangle.c.obj	d7f1c9d7ed8dd8bc
+37	156	7623434443500896	CMakeFiles/2Dscene.dir/rect.c.obj	d4a2911a77de98a0
+46	167	7623434443600970	CMakeFiles/2Dscene.dir/point.c.obj	9d1825b69cd9495a
+51	169	7623434443652436	CMakeFiles/2Dscene.dir/vline.c.obj	1ae548659c2ea154
+56	175	7623434443699243	CMakeFiles/2Dscene.dir/hline.c.obj	7b7609079c87f1a6
+16	142	7623435885465078	CMakeFiles/2Dscene.dir/object.c.obj	832064d5b72d2196
+142	301	7623435886727968	2Dscene.exe	53e252a3a3045155
