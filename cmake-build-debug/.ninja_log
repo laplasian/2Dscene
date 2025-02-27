@@ -1,9 +1,10 @@
 # ninja log v6
-134	281	7623319930740988	2Dscene.exe	587b4a8ac44e9fca
-24	168	7623434443375316	CMakeFiles/2Dscene.dir/main.c.obj	4a7e86efe9296438
+24	174	7623440723660056	CMakeFiles/2Dscene.dir/main.c.obj	4a7e86efe9296438
+224	376	7623440725650038	2Dscene.exe	b86246ec8ee19935
 23	133	7623319929636028	CMakeFiles/2Dscene.dir/parcer.c.obj	d9b9d919152f7958
 28	185	7623434443424551	CMakeFiles/2Dscene.dir/new.c.obj	bcf4eb57b1831fec
-5	315	7623435870712399	build.ninja	4af95a368fee69a3
+2	338	7623446391787583	build.ninja	4af95a368fee69a3
+29	186	7623440723700071	CMakeFiles/2Dscene.dir/oop/new.c.obj	b7dafabe766b42ed
 32	151	7623434443465541	CMakeFiles/2Dscene.dir/cyrcle.c.obj	a3ed51dde9ac3618
 41	161	7623434443553476	CMakeFiles/2Dscene.dir/triangle.c.obj	d7f1c9d7ed8dd8bc
 37	156	7623434443500896	CMakeFiles/2Dscene.dir/rect.c.obj	d4a2911a77de98a0
@@ -11,4 +12,14 @@
 51	169	7623434443652436	CMakeFiles/2Dscene.dir/vline.c.obj	1ae548659c2ea154
 56	175	7623434443699243	CMakeFiles/2Dscene.dir/hline.c.obj	7b7609079c87f1a6
 16	142	7623435885465078	CMakeFiles/2Dscene.dir/object.c.obj	832064d5b72d2196
-142	301	7623435886727968	2Dscene.exe	53e252a3a3045155
+33	157	7623440723750866	CMakeFiles/2Dscene.dir/objects/cyrcle.c.obj	f95356c9947fbf9c
+38	163	7623440723795866	CMakeFiles/2Dscene.dir/objects/rect.c.obj	8e6f6fdf32773bd8
+55	165	7623440723961591	CMakeFiles/2Dscene.dir/objects/point.c.obj	379b45e337be22cc
+50	167	7623440723910469	CMakeFiles/2Dscene.dir/objects/triangle.c.obj	d2346b5f10fde7cc
+61	177	7623440724013067	CMakeFiles/2Dscene.dir/objects/vline.c.obj	9319fc9aec9161aa
+66	184	7623440724077209	CMakeFiles/2Dscene.dir/objects/hline.c.obj	4a2f98ab9dd5c573
+72	224	7623440724129210	CMakeFiles/2Dscene.dir/oop/object.c.obj	ea6468eb297997ac
+32	104	7623446478865861	CMakeFiles/2Dscene.dir/oop/object.c.obj	ea6468eb297997ac
+20	118	7623446478748449	CMakeFiles/2Dscene.dir/main.c.obj	4a7e86efe9296438
+28	136	7623446478809726	CMakeFiles/2Dscene.dir/oop/parser.c.obj	a56533c9c780adb
+136	290	7623446479902265	2Dscene.exe	65a04b1f48c2f667

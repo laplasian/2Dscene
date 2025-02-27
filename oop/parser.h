@@ -1,7 +1,3 @@
-//
-// Created by user on 27.02.2025.
-//
-
 #ifndef PARCER_H
 #define PARCER_H
 

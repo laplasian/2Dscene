@@ -55,53 +55,53 @@ build CMakeFiles/2Dscene.dir/main.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:
   OBJECT_DIR = CMakeFiles\2Dscene.dir
   OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir
 
-build CMakeFiles/2Dscene.dir/new.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/new.c || cmake_object_order_depends_target_2Dscene
-  DEP_FILE = CMakeFiles\2Dscene.dir\new.c.obj.d
+build CMakeFiles/2Dscene.dir/objects/cyrcle.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/objects/cyrcle.c || cmake_object_order_depends_target_2Dscene
+  DEP_FILE = CMakeFiles\2Dscene.dir\objects\cyrcle.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\2Dscene.dir
-  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir
+  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir\objects
 
-build CMakeFiles/2Dscene.dir/cyrcle.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/cyrcle.c || cmake_object_order_depends_target_2Dscene
-  DEP_FILE = CMakeFiles\2Dscene.dir\cyrcle.c.obj.d
+build CMakeFiles/2Dscene.dir/objects/rect.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/objects/rect.c || cmake_object_order_depends_target_2Dscene
+  DEP_FILE = CMakeFiles\2Dscene.dir\objects\rect.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\2Dscene.dir
-  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir
+  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir\objects
 
-build CMakeFiles/2Dscene.dir/rect.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/rect.c || cmake_object_order_depends_target_2Dscene
-  DEP_FILE = CMakeFiles\2Dscene.dir\rect.c.obj.d
+build CMakeFiles/2Dscene.dir/objects/triangle.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/objects/triangle.c || cmake_object_order_depends_target_2Dscene
+  DEP_FILE = CMakeFiles\2Dscene.dir\objects\triangle.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\2Dscene.dir
-  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir
+  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir\objects
 
-build CMakeFiles/2Dscene.dir/triangle.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/triangle.c || cmake_object_order_depends_target_2Dscene
-  DEP_FILE = CMakeFiles\2Dscene.dir\triangle.c.obj.d
+build CMakeFiles/2Dscene.dir/objects/point.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/objects/point.c || cmake_object_order_depends_target_2Dscene
+  DEP_FILE = CMakeFiles\2Dscene.dir\objects\point.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\2Dscene.dir
-  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir
+  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir\objects
 
-build CMakeFiles/2Dscene.dir/point.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/point.c || cmake_object_order_depends_target_2Dscene
-  DEP_FILE = CMakeFiles\2Dscene.dir\point.c.obj.d
+build CMakeFiles/2Dscene.dir/objects/vline.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/objects/vline.c || cmake_object_order_depends_target_2Dscene
+  DEP_FILE = CMakeFiles\2Dscene.dir\objects\vline.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\2Dscene.dir
-  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir
+  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir\objects
 
-build CMakeFiles/2Dscene.dir/vline.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/vline.c || cmake_object_order_depends_target_2Dscene
-  DEP_FILE = CMakeFiles\2Dscene.dir\vline.c.obj.d
+build CMakeFiles/2Dscene.dir/objects/hline.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/objects/hline.c || cmake_object_order_depends_target_2Dscene
+  DEP_FILE = CMakeFiles\2Dscene.dir\objects\hline.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\2Dscene.dir
-  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir
+  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir\objects
 
-build CMakeFiles/2Dscene.dir/hline.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/hline.c || cmake_object_order_depends_target_2Dscene
-  DEP_FILE = CMakeFiles\2Dscene.dir\hline.c.obj.d
+build CMakeFiles/2Dscene.dir/oop/parser.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/oop/parser.c || cmake_object_order_depends_target_2Dscene
+  DEP_FILE = CMakeFiles\2Dscene.dir\oop\parser.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\2Dscene.dir
-  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir
+  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir\oop
 
-build CMakeFiles/2Dscene.dir/object.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/object.c || cmake_object_order_depends_target_2Dscene
-  DEP_FILE = CMakeFiles\2Dscene.dir\object.c.obj.d
+build CMakeFiles/2Dscene.dir/oop/object.c.obj: C_COMPILER__2Dscene_unscanned_Debug C$:/Users/user/CLionProjects/2Dscene/oop/object.c || cmake_object_order_depends_target_2Dscene
+  DEP_FILE = CMakeFiles\2Dscene.dir\oop\object.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\2Dscene.dir
-  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir
+  OBJECT_FILE_DIR = CMakeFiles\2Dscene.dir\oop
 
 
 # =============================================================================
@@ -111,7 +111,7 @@ build CMakeFiles/2Dscene.dir/object.c.obj: C_COMPILER__2Dscene_unscanned_Debug C
 #############################################
 # Link the executable 2Dscene.exe
 
-build 2Dscene.exe: C_EXECUTABLE_LINKER__2Dscene_Debug CMakeFiles/2Dscene.dir/main.c.obj CMakeFiles/2Dscene.dir/new.c.obj CMakeFiles/2Dscene.dir/cyrcle.c.obj CMakeFiles/2Dscene.dir/rect.c.obj CMakeFiles/2Dscene.dir/triangle.c.obj CMakeFiles/2Dscene.dir/point.c.obj CMakeFiles/2Dscene.dir/vline.c.obj CMakeFiles/2Dscene.dir/hline.c.obj CMakeFiles/2Dscene.dir/object.c.obj
+build 2Dscene.exe: C_EXECUTABLE_LINKER__2Dscene_Debug CMakeFiles/2Dscene.dir/main.c.obj CMakeFiles/2Dscene.dir/objects/cyrcle.c.obj CMakeFiles/2Dscene.dir/objects/rect.c.obj CMakeFiles/2Dscene.dir/objects/triangle.c.obj CMakeFiles/2Dscene.dir/objects/point.c.obj CMakeFiles/2Dscene.dir/objects/vline.c.obj CMakeFiles/2Dscene.dir/objects/hline.c.obj CMakeFiles/2Dscene.dir/oop/parser.c.obj CMakeFiles/2Dscene.dir/oop/object.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\2Dscene.dir

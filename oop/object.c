@@ -1,9 +1,6 @@
-// Для calloc и free
+#include "object.h"
 #include <stdlib.h>
-
-// Для assert.h
 #include <assert.h>
-#include "new.h"
 
 // Реализация функции new
 void *new(const void *_class, ...)
