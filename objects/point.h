@@ -5,4 +5,12 @@
 #ifndef POINT_H
 #define POINT_H
 
+struct Point {
+  const struct Class* _class;
+  int x;
+  int y;
+};
+
+extern const void* Point;
+
 #endif //POINT_H

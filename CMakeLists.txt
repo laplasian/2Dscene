@@ -4,7 +4,7 @@ project(2Dscene C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(2Dscene main.c
-        oop/parser.h
+        objects/parser.h
         objects/cyrcle.c
         objects/cyrcle.h
         objects/rect.c
@@ -17,7 +17,7 @@ add_executable(2Dscene main.c
         objects/vline.h
         objects/hline.c
         objects/hline.h
-        oop/parser.c
-        oop/object.c
-        oop/object.h
+        objects/parser.c
+        objects/new.c
+        objects/new.h
 )
