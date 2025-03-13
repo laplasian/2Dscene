@@ -5,12 +5,13 @@
 #ifndef POINT_H
 #define POINT_H
 
+#include "Shape.h"
+
 struct Point {
-  const struct Class* _class;
-  int x;
-  int y;
+  Shape base;
+  int x, y;
 };
 
-extern const void* Point;
+extern const struct Class* Point;
 
 #endif //POINT_H

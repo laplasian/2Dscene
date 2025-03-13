@@ -1,6 +1,7 @@
 #include "new.h"
 #include <stdlib.h>
 #include <assert.h>
+#include <stdio.h>
 
 // Реализация функции new
 void *new(const void *_class, ...)
@@ -29,6 +30,7 @@ void *new(const void *_class, ...)
 
         // Вызываем конструктор
         p = class->ctor(p, &ap);
+
 
         // Очищаем ap
         va_end(ap);

@@ -5,12 +5,8 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(2Dscene main.c
         objects/parser.h
-        objects/cyrcle.c
-        objects/cyrcle.h
         objects/rect.c
         objects/rect.h
-        objects/triangle.c
-        objects/triangle.h
         objects/point.c
         objects/point.h
         objects/vline.c
@@ -20,4 +16,10 @@ add_executable(2Dscene main.c
         objects/parser.c
         objects/new.c
         objects/new.h
+        objects/Shape.c
+        objects/Shape.h
+        factory.c
+        factory.h
+        console.c
+        console.h
 )
