@@ -3,7 +3,7 @@
 //
 
 #include "rect.h"
-
+#include "scene.h"
 #include <stdio.h>
 
 
@@ -20,7 +20,13 @@ static void* rect_ctor(void* _self, va_list* app) {
 
 static void rect_draw(const void* _self) {
     const struct Rect* self = _self;
-    printf("rect at: %d %d %d %d", self->x1, self->y1, self->x2, self->y2);
+    for (int i = self->x1; i < self->x2; ++i) {
+        for (int j = self->y1; j < self->y2; ++j) {
+            if (i < field_width - 1 && j < field_height - 1) {
+                con_charAt('*', COLOR_POINT, field_x + i, field_y + j);
+            }
+        }
+    }
 }
 
 

@@ -3,12 +3,9 @@
 //
 
 #include "point.h"
-
-#include <assert.h>
-#include <stdarg.h>
 #include <stdio.h>
 
-#include "new.h"
+#include "scene.h"
 
 
 static void* point_ctor(void* _self, va_list* app) {
@@ -22,7 +19,7 @@ static void* point_ctor(void* _self, va_list* app) {
 
 static void point_draw(const void* _self) {
     const struct Point* self = _self;
-    printf("point at: %d %d", self->x, self->y);
+    con_charAt('*', COLOR_POINT, self->x, self->y);
 }
 
 

@@ -5,6 +5,7 @@
 #include "hline.h"
 
 #include <stdio.h>
+#include "scene.h"
 
 
 static void* hline_ctor(void* _self, va_list* app) {
@@ -19,9 +20,12 @@ static void* hline_ctor(void* _self, va_list* app) {
 
 static void hline_draw(const void* _self) {
     const struct Hline* self = _self;
-    printf("point at: %d %d", self->x1, self->x2);
+    for (int i = self->x1; i < self->x2; ++i) {
+        if (i < field_width - 1 && self->y < field_height - 1) {
+            con_charAt('*', COLOR_POINT, field_x + i, field_y + self->y);
+        }
+    }
 }
-
 
 static const struct Class _Hline = {
     sizeof(struct Hline),

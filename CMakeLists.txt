@@ -18,8 +18,9 @@ add_executable(2Dscene main.c
         objects/new.h
         objects/Shape.c
         objects/Shape.h
-        factory.c
-        factory.h
-        console.c
-        console.h
+        objects/scene.c
+        objects/scene.h
+        objects/console.c
+        objects/console.h
+        objects/imports.h
 )

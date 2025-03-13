@@ -2,44 +2,33 @@
 // Created by user on 13.03.2025.
 //
 
-#include "factory.h"
+#include "scene.h"
 #include <assert.h>
+
 #include "console.h"
+#include "new.h"
 
-#define TITLE_X 3
-#define TITLE_Y 1
-
-#define FIELD_PADDING 3
-
-#define CHAR_BORDER '#'
-#define CHAR_FIELD  ' '
-#define CHAR_POINT  '@'
-
-#define COLOR_BORDER 1
-#define COLOR_FIELD  2
-#define COLOR_POINT  3
-
-static int field_x, field_y; // top-left corner
-static int field_width, field_height;
-static int point_x, point_y;
+int field_x = 0;
+int field_y = 0;
+int field_width = 0;
+int field_height = 0;
 
 /* Output char using given color pair at given position. */
-static void con_charAt(int ch, int color, int x, int y) {
+void con_charAt(int ch, int color, int x, int y) {
     con_gotoXY(x, y);
     con_setColor((short)color);
     con_outTxt("%c", ch);
 }
 
-static void init_colors() {
-    con_initPair(COLOR_BORDER, CON_COLOR_BLACK, CON_COLOR_BLUE);
-    con_initPair(COLOR_FIELD, CON_COLOR_GREEN, CON_COLOR_GREEN);
-    con_initPair(COLOR_POINT, CON_COLOR_RED, CON_COLOR_GREEN);
+void init_colors() {
+    con_initPair(COLOR_BORDER, CON_COLOR_BLACK, CON_COLOR_BLACK);
+    con_initPair(COLOR_FIELD, CON_COLOR_GREEN, CON_COLOR_BLACK);
+    con_initPair(COLOR_POINT, CON_COLOR_RED, CON_COLOR_BLACK);
 }
 
-static void initial_draw() {
+void initial_draw() {
     con_clearScr();
     con_gotoXY(TITLE_X, TITLE_Y);
-    con_outTxt("Use arrows to move point, use Esc to exit.");
 
     {
         int i, j;
@@ -59,13 +48,14 @@ static void initial_draw() {
         }
     }
 
-    point_x = field_x + field_width/2;
-    point_y = field_y + field_height/2;
-    con_charAt(CHAR_POINT, COLOR_POINT, point_x, point_y);
 }
 
-int run() {
+int run(Scene* scene) {
     int max_x, max_y;
+    int quit = 0;
+
+    max_x = scene->width;
+    max_y = scene->height;
 
     con_init();
     con_hideCursor();
@@ -74,14 +64,23 @@ int run() {
 
     // calculate size of field
     con_getMaxXY(&max_x, &max_y);
+
     field_x = FIELD_PADDING + TITLE_Y + 1;
     field_y = FIELD_PADDING;
     field_width = max_x - field_x - FIELD_PADDING;
     field_height = max_y - field_y - FIELD_PADDING;
-    // assert(field_width > 2);
-    // assert(field_height > 2);
 
     initial_draw();
+
+    for (int i = 0; i < scene->size; ++i) {
+        draw(scene->objects[i]);
+    }
+
+    while (!quit) {
+        if (con_keyPressed()) {
+            quit = 1;
+        }
+    }
 
     con_clearScr();
     con_deinit();
