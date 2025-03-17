@@ -1,5 +1,5 @@
-#ifndef FACTORY_H
-#define FACTORY_H
+#ifndef SCENE_H
+#define SCENE_H
 
 #define TITLE_X 1
 #define TITLE_Y 1
@@ -15,17 +15,11 @@
 #define COLOR_POINT  3
 
 typedef struct {
-    int size;
-    int capacity;
-    struct Class ** objects;
-    int width;
-    int height;
+    int x1, x2, y1, y2;
+    void * slist;
 }Scene;
 
 int run(Scene* scene);
 void con_charAt(int ch, int color, int x, int y);
 
-extern int field_x, field_y; // top-left corner
-extern int field_width, field_height;
-
-#endif //FACTORY_H
+#endif //SCENE_H

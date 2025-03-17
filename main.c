@@ -1,14 +1,10 @@
 #include <stdio.h>
-
-#include "objects/imports.h"
-
+#include "factory.h"
 
 int main(void)
 {
-    char *filename = "C:\\Users\\user\\CLionProjects\\2Dscene\\scene.txt";
-
-    Scene * scene = make_scene(filename);
-    run(scene);
+    char *filename = "scene.txt";
+    create_scene(filename);
 
     return 0;
 }

@@ -5,8 +5,8 @@
 #include "scene.h"
 #include <assert.h>
 
-#include "console.h"
-#include "new.h"
+#include "lib/console.h"
+#include "lib/new.h"
 
 int field_x = 0;
 int field_y = 0;
@@ -54,8 +54,6 @@ int run(Scene* scene) {
     int max_x, max_y;
     int quit = 0;
 
-    max_x = scene->width;
-    max_y = scene->height;
 
     con_init();
     con_hideCursor();
@@ -71,10 +69,6 @@ int run(Scene* scene) {
     field_height = max_y - field_y - FIELD_PADDING;
 
     initial_draw();
-
-    for (int i = 0; i < scene->size; ++i) {
-        draw(scene->objects[i]);
-    }
 
     while (!quit) {
         if (con_keyPressed()) {
