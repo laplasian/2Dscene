@@ -59,7 +59,7 @@ void delete(void *self)
 }
 
 // Реализация функции draw
-void draw(const void *self)
+void draw(const void *self, ...)
 {
     // Поскольку нам потребуется доступ к описанию класса объекта,
     // сделаем удобное преобразование типов
@@ -70,5 +70,8 @@ void draw(const void *self)
     assert(self && *cp && (*cp)->draw);
 
     // Вызываем виртуальный метод по указателю
-    (*cp)->draw(self);
+    va_list ap;
+    va_start(ap, self);
+    (*cp)->draw(self, &ap);
+    va_end(ap);
 }

@@ -16,9 +16,11 @@ static void* point_ctor(void* _self, va_list* app) {
     return self;
 }
 
-static void point_draw(const void* _self) {
+static void point_draw(const void* _self, va_list *app) {
     const struct Point* self = _self;
-    printf("point\n");
+    Scene * scene = va_arg(*app, Scene*);
+    void (*_global_draw)(int ch, int color, int x, int y) = va_arg(*app, void (*)(int ch, int color, int x, int y));
+    _global_draw('*', COLOR_POINT, self->x, self->y);
 }
 
 /*
@@ -35,10 +37,13 @@ static void* hline_ctor(void* _self, va_list* app) {
     return self;
 }
 
-static void hline_draw(const void* _self) {
+static void hline_draw(const void* _self, va_list *app) {
     const struct Hline* self = _self;
-    for (int i = self->x1; i < self->x2; ++i) {
+    Scene * scene = va_arg(*app, Scene*);
+    void (*_global_draw)(int ch, int color, int x, int y) = va_arg(*app, void (*)(int ch, int color, int x, int y));
 
+    for (int i = self->x1; i < self->x2; ++i) {
+        _global_draw('-', COLOR_POINT, self->x1 + i, self->y);
     }
 }
 
@@ -56,10 +61,14 @@ static void* vline_ctor(void* _self, va_list* app) {
     return self;
 }
 
-static void vline_draw(const void* _self) {
+static void vline_draw(const void* _self, va_list *app) {
     const struct Vline* self = _self;
-    for (int i = self->y1; i < self->y2; ++i) {
 
+    Scene * scene = va_arg(*app, Scene*);
+    void (*_global_draw)(int ch, int color, int x, int y) = va_arg(*app, void (*)(int ch, int color, int x, int y));
+
+    for (int i = self->y1; i < self->y2; ++i) {
+        _global_draw('|', COLOR_POINT, self->x, self->y1 + i);
     }
 }
 
@@ -78,12 +87,17 @@ static void* rect_ctor(void* _self, va_list* app) {
     return self;
 }
 
-static void rect_draw(const void* _self) {
+static void rect_draw(const void* _self, va_list *app) {
     const struct Rect* self = _self;
+    Scene * scene = va_arg(*app, Scene*);
+    void (*_global_draw)(int ch, int color, int x, int y) = va_arg(*app, void (*)(int ch, int color, int x, int y));
     for (int i = self->x1; i < self->x2; ++i) {
-        for (int j = self->y1; j < self->y2; ++j) {
-
-        }
+        _global_draw('-', COLOR_POINT, self->x1 + i, self->y1);
+        _global_draw('-', COLOR_POINT, self->x1 + i, self->y2);
+    }
+    for (int j = self->y1; j < self->y2; ++j) {
+        _global_draw('|', COLOR_POINT, self->x1, self->y1 + j);
+        _global_draw('|', COLOR_POINT, self->x2, self->y1 + j);
     }
 }
 

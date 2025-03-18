@@ -20,6 +20,7 @@ typedef struct {
 }Scene;
 
 int run(Scene* scene);
-void con_charAt(int ch, int color, int x, int y);
+void global_draw(int ch, int color, int x, int y);
+void init_colors();
 
 #endif //SCENE_H

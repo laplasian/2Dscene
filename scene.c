@@ -14,7 +14,7 @@ int field_width = 0;
 int field_height = 0;
 
 /* Output char using given color pair at given position. */
-void con_charAt(int ch, int color, int x, int y) {
+void global_draw(int ch, int color, int x, int y) {
     con_gotoXY(x, y);
     con_setColor((short)color);
     con_outTxt("%c", ch);
@@ -43,7 +43,7 @@ void initial_draw() {
                     ch = CHAR_FIELD;
                     color = COLOR_FIELD;
                 }
-                con_charAt(ch, color, field_x + i, field_y + j);
+                global_draw(ch, color, field_x + i, field_y + j);
             }
         }
     }

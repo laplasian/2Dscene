@@ -41,7 +41,6 @@ Scene * create_scene(const char * file_name) {
         fclose(file);
         return NULL;
     }
-
     Scene * scene = malloc(sizeof(Scene));
 
     scene->x1 = scene_x1;
@@ -51,7 +50,7 @@ Scene * create_scene(const char * file_name) {
 
     scene->slist = slist_create(sizeof(struct Class*));
 
-    while (fgets(line, max_objects_size, file)) {
+    while (fgets(line, max_line_size, file)) {
         struct Class * obj = slist_prepend(scene->slist); // Получаем указатель на новый элемент
         *obj = *get_obj(line);
     }
