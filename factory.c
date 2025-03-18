@@ -12,19 +12,20 @@
 
 
 struct Class * get_obj(const char * line) {
-    int d1, d2, d3, d4, end;
+    int d1, d2, d3, d4;
     char name[max_line_size] = {};
-    int num = sscanf(line, "%s %d %d %d %d %d", name, &d1, &d2, &d3, &d4, &end);
+    int num = sscanf(line, "%s %d %d %d %d", name, &d1, &d2, &d3, &d4);
 
     if (num == 3 && strcmp(name, "point") == 0) {
         return  new(Point, d1, d2);
-    } else if (num == 4 && strcmp(name, "rect") == 0) {
+    } else if (num == 5 && strcmp(name, "rect") == 0) {
         return  new(Rect, d1, d2, d3, d4);
-    } else if (num == 3 && strcmp(name, "hline") == 0) {
+    } else if (num == 4 && strcmp(name, "hline") == 0) {
         return  new(Hline, d1, d2, d3);
-    } else if (num == 3 && strcmp(name, "vline") == 0) {
+    } else if (num == 4 && strcmp(name, "vline") == 0) {
         return  new(Vline, d1, d2, d3);
     }
+    printf("lol");
     return NULL;
 }
 
@@ -36,7 +37,7 @@ Scene * create_scene(const char * file_name) {
 
     int scene_x1, scene_y1, scene_x2, scene_y2;
     if (sscanf(line, "%d %d %d %d", &scene_x1, &scene_y1, &scene_x2, &scene_y2) != 4) {
-        fprintf(stderr, "Error: expected 4 integers for scene dimensions\n");
+        printf("Error: expected 4 integers for scene dimensions\n");
         fclose(file);
         return NULL;
     }
@@ -51,7 +52,7 @@ Scene * create_scene(const char * file_name) {
     scene->slist = slist_create(sizeof(struct Class*));
 
     while (fgets(line, max_objects_size, file)) {
-        struct Class * obj = (struct Class *)slist_prepend(scene->slist);
+        struct Class * obj = slist_prepend(scene->slist); // Получаем указатель на новый элемент
         *obj = *get_obj(line);
     }
 

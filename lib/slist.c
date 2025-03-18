@@ -120,8 +120,9 @@ void * slist_current(const void * slist, size_t item_id) {
 }
 
 void * slist_insert(void * slist, size_t item_id) {
-    if (slist == NULL || item_id == slist_stop(slist) && ((Slist *)slist)->head != NULL) return NULL; // fixed
+    if (slist == NULL ) return NULL; // fixed
     if (item_id == slist_stop(slist)) {
+        if (slist_count(slist) != 0) return NULL;
         return slist_prepend(slist);
     }
     Node* current = (Node *)item_id;
@@ -133,7 +134,7 @@ void * slist_insert(void * slist, size_t item_id) {
 }
 
 void slist_erase(void * slist, size_t item_id, void(*destroy)( void * )) {
-    if (slist == NULL || ((Slist *)slist)->head == NULL || slist_stop(slist) == item_id) return;
+    if (slist == NULL || slist_stop(slist) == item_id) return;
     Node* current = ((Slist *)slist)->head;
     if (current == (Node *)item_id) {
         slist_remove(slist, destroy);

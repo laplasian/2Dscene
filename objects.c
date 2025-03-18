@@ -18,7 +18,7 @@ static void* point_ctor(void* _self, va_list* app) {
 
 static void point_draw(const void* _self) {
     const struct Point* self = _self;
-
+    printf("point\n");
 }
 
 /*
