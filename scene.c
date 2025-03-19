@@ -4,18 +4,18 @@
 
 #include "scene.h"
 #include <assert.h>
-
+#include <windows.h>
+#include <stdio.h>
 #include "lib/console.h"
 #include "lib/new.h"
+#include "lib/slist.h"
 
-int field_x = 0;
-int field_y = 0;
-int field_width = 0;
-int field_height = 0;
+extern int field_width = 0;
+extern int field_height = 0;
 
 /* Output char using given color pair at given position. */
 void global_draw(int ch, int color, int x, int y) {
-    con_gotoXY(x, y);
+    con_gotoXY(x , y);
     con_setColor((short)color);
     con_outTxt("%c", ch);
 }
@@ -43,41 +43,19 @@ void initial_draw() {
                     ch = CHAR_FIELD;
                     color = COLOR_FIELD;
                 }
-                global_draw(ch, color, field_x + i, field_y + j);
+                global_draw(ch, color,  i, j);
             }
         }
     }
 
 }
 
-int run(Scene* scene) {
-    int max_x, max_y;
-    int quit = 0;
-
-
-    con_init();
-    con_hideCursor();
-
-    init_colors();
-
-    // calculate size of field
-    con_getMaxXY(&max_x, &max_y);
-
-    field_x = FIELD_PADDING + TITLE_Y + 1;
-    field_y = FIELD_PADDING;
-    field_width = max_x - field_x - FIELD_PADDING;
-    field_height = max_y - field_y - FIELD_PADDING;
-
-    initial_draw();
-
-    while (!quit) {
-        if (con_keyPressed()) {
-            quit = 1;
-        }
-    }
-
-    con_clearScr();
-    con_deinit();
-    return 0;
+void clear_scene(Scene * scene) {
+    slist_clear(scene->slist, delete); // вызывает delete для каждого объекта
 }
 
+void destroy_scene(Scene * scene) {
+    clear_scene(scene);
+    free(scene->slist);
+    free(scene);
+}

@@ -9,7 +9,7 @@
 #include "lib/new.h"
 
 
-#define max_line_size 100
+#define max_line_size 200
 #define max_objects_size 100
 
 struct Class * get_obj(const char * line);

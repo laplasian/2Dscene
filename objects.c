@@ -19,8 +19,10 @@ static void* point_ctor(void* _self, va_list* app) {
 static void point_draw(const void* _self, va_list *app) {
     const struct Point* self = _self;
     Scene * scene = va_arg(*app, Scene*);
-    void (*_global_draw)(int ch, int color, int x, int y) = va_arg(*app, void (*)(int ch, int color, int x, int y));
-    _global_draw('*', COLOR_POINT, self->x, self->y);
+    if (scene->x1 <= self->x <= scene->x2 && scene->y1 <= self->y <= scene->y2) {
+        void (*_global_draw)(int ch, int color, int x, int y) = va_arg(*app, void (*)(int ch, int color, int x, int y));
+        _global_draw('*', COLOR_POINT, self->x, self->y);
+    }
 }
 
 /*
@@ -43,7 +45,7 @@ static void hline_draw(const void* _self, va_list *app) {
     void (*_global_draw)(int ch, int color, int x, int y) = va_arg(*app, void (*)(int ch, int color, int x, int y));
 
     for (int i = self->x1; i < self->x2; ++i) {
-        _global_draw('-', COLOR_POINT, self->x1 + i, self->y);
+        if (scene->x1 <= i <= scene->x2 && scene->y1 <= self->y <= scene->y2) _global_draw('-', COLOR_POINT, i, self->y);
     }
 }
 
@@ -68,7 +70,7 @@ static void vline_draw(const void* _self, va_list *app) {
     void (*_global_draw)(int ch, int color, int x, int y) = va_arg(*app, void (*)(int ch, int color, int x, int y));
 
     for (int i = self->y1; i < self->y2; ++i) {
-        _global_draw('|', COLOR_POINT, self->x, self->y1 + i);
+        if (scene->x1 <= self->x <= scene->x2 && scene->y1 <= i <= scene->y2) _global_draw('|', COLOR_POINT, self->x, i);
     }
 }
 
@@ -91,13 +93,14 @@ static void rect_draw(const void* _self, va_list *app) {
     const struct Rect* self = _self;
     Scene * scene = va_arg(*app, Scene*);
     void (*_global_draw)(int ch, int color, int x, int y) = va_arg(*app, void (*)(int ch, int color, int x, int y));
+
     for (int i = self->x1; i < self->x2; ++i) {
-        _global_draw('-', COLOR_POINT, self->x1 + i, self->y1);
-        _global_draw('-', COLOR_POINT, self->x1 + i, self->y2);
+        if (scene->x1 <= i <= scene->x2 && scene->y1 <= self->y1 <= scene->y2) _global_draw('-', COLOR_POINT, i, self->y1);
+        if (scene->x1 <= i <= scene->x2 && scene->y1 <= self->y2 <= scene->y2) _global_draw('-', COLOR_POINT, i, self->y2);
     }
     for (int j = self->y1; j < self->y2; ++j) {
-        _global_draw('|', COLOR_POINT, self->x1, self->y1 + j);
-        _global_draw('|', COLOR_POINT, self->x2, self->y1 + j);
+        if (scene->x1 <= self->x1 <= scene->x2 && scene->y1 <= j <= scene->y2) _global_draw('|', COLOR_POINT, self->x1, j);
+        if (scene->x1 <= self->x2 <= scene->x2 && scene->y1 <= j <= scene->y2) _global_draw('|', COLOR_POINT, self->x2, j);
     }
 }
 

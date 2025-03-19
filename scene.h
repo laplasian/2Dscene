@@ -19,8 +19,13 @@ typedef struct {
     void * slist;
 }Scene;
 
-int run(Scene* scene);
 void global_draw(int ch, int color, int x, int y);
 void init_colors();
+void initial_draw();
+void clear_scene(Scene * scene);
+void destroy_scene(Scene * scene);
+
+extern int field_width;
+extern int field_height;
 
 #endif //SCENE_H

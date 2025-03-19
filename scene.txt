@@ -1,5 +1,7 @@
 10 10 1000 1000
 point 10 20
-rect 1 1 5 5
 hline 5 10 10
-vline 10 20 40
+vline 10 20 30
+point 5 10
+rect 1 5 5 10
+rect 3 6 9 12
