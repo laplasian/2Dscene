@@ -55,7 +55,6 @@ void clear_scene(Scene * scene) {
 }
 
 void destroy_scene(Scene * scene) {
-    clear_scene(scene);
-    free(scene->slist);
+    slist_destroy(scene->slist, delete);
     free(scene);
 }
