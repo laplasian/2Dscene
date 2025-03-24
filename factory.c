@@ -23,7 +23,10 @@ struct Class * get_obj(const char * line) {
         return  new(Hline, d1, min(d2, d3), max(d2, d3));
     } else if (num == 4 && strcmp(name, "vline") == 0) {
         return  new(Vline, min(d1, d2), max(d1, d2), d3);
+    } else if (strcmp(line, "\n") == 0) {
+        return NULL;
     }
+    print_message_at_scene(line);
     return NULL;
 }
 
@@ -47,6 +50,11 @@ void * create_slist(FILE *file) {
 }
 
 void delete_slist(void * slist) {
-    slist_destroy(slist, delete);
-    free(slist);
+    size_t current = slist_first(slist);
+    while (current != slist_stop(slist)) {
+        void* obj = *(void **)slist_current(slist, current);
+        delete(obj);
+        current = slist_next(slist, current);
+    }
+    slist_destroy(slist, NULL);
 }

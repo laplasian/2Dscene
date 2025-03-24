@@ -92,7 +92,7 @@ void init_scene(Scene * scene) {
     initial_draw(scene);
 }
 
-void draw_scene(Scene * scene, void * slist) {
+void draw_scene(Scene * scene, const void * slist) {
     size_t current = slist_first(slist);
     while (current != slist_stop(slist)) {
         void* obj = *(void **)slist_current(slist, current);
@@ -107,6 +107,16 @@ void destroy_scene(Scene * scene) {
     con_deinit();
 }
 
-void print_error_at_scene(Scene * scene) {
-
-};
+void print_message_at_scene(const char * error) {
+    static int count = 0;
+    for (int i = 0; i < field_width; ++i) { // min(sizeof(error), field_width)
+        char ch = error[i];
+        if (error[i] == '\000') {
+            break;
+        }
+        con_gotoXY(i, field_height + count + 3);
+        con_setColor((short)3);
+        con_outTxt("%c", error[i]);
+    }
+    count++;
+}

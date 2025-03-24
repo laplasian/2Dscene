@@ -25,12 +25,15 @@ int main(int argc, char *argv[])
     FILE *file = fopen(filename, "r");
 
     Scene * scene = create_scene(file);
-    void *slist = create_slist(file);
-
     init_scene(scene);
+
+    print_message_at_scene("  press escape  ");
+
+    void *slist = create_slist(file);
     draw_scene(scene, slist);
 
-    getchar();
+    while (con_getKey() != CON_KEY_ESCAPE) {
+    }
 
     delete_slist(slist);
     destroy_scene(scene);

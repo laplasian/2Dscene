@@ -2,10 +2,10 @@
 point 10 20
 point 12 22
 point 14 24
-poisfdbxvnt 16 26
+point 16 26
 hline 15 20 20
 vline 30 30 40
 
 rect 1 5 5 10
 
-ppoind 3 6 9 12
+point 3 6
