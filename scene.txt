@@ -1,7 +1,11 @@
-10 10 1000 1000
+0 0 100 100
 point 10 20
-hline 5 10 10
-vline 10 20 30
-point 5 10
+point 12 22
+point 14 24
+poisfdbxvnt 16 26
+hline 15 20 20
+vline 30 30 40
+
 rect 1 5 5 10
-rect 3 6 9 12
+
+ppoind 3 6 9 12

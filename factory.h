@@ -6,13 +6,14 @@
 #define FACTORY_H
 
 #include "scene.h"
-#include "lib/new.h"
+#include "new.h"
 
 
 #define max_line_size 200
 #define max_objects_size 100
 
 struct Class * get_obj(const char * line);
-Scene * create_scene(const char * file_name);
+void * create_slist(FILE *file);
+void delete_slist(void * slist);
 
 #endif //FACTORY_H

@@ -1,7 +1,7 @@
 #ifndef OBJECTS_H
 #define OBJECTS_H
 
-#include "lib/new.h"
+#include "new.h"
 
 //Base class
 typedef struct {

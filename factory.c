@@ -1,8 +1,7 @@
-//
-// Created by user on 18.03.2025.
-//
-
 #include "factory.h"
+
+#include <bemapiset.h>
+
 #include "objects.h"
 #include "scene.h"
 #include "lib/slist.h"
@@ -16,38 +15,23 @@ struct Class * get_obj(const char * line) {
     char name[10] = {};
     int num = sscanf(line, "%s %d %d %d %d", name, &d1, &d2, &d3, &d4);
 
-    if (num >= 3 && strcmp(name, "point") == 0) {
+    if (num == 3 && strcmp(name, "point") == 0) {
         return  new(Point, d1, d2);
-    } else if (num >= 5 && strcmp(name, "rect") == 0) {
-        return  new(Rect, d1, d2, d3, d4);
-    } else if (num >= 4 && strcmp(name, "hline") == 0) {
-        return  new(Hline, d1, d2, d3);
-    } else if (num >= 4 && strcmp(name, "vline") == 0) {
-        return  new(Vline, d1, d2, d3);
+    } else if (num == 5 && strcmp(name, "rect") == 0) {
+        return  new(Rect, min(d1,d2), max(d1,d2), min(d3,d4), max(d3,d4));
+    } else if (num == 4 && strcmp(name, "hline") == 0) {
+        return  new(Hline, d1, min(d2, d3), max(d2, d3));
+    } else if (num == 4 && strcmp(name, "vline") == 0) {
+        return  new(Vline, min(d1, d2), max(d1, d2), d3);
     }
     return NULL;
 }
 
-Scene * create_scene(const char * file_name) {
-    FILE *file = fopen(file_name, "r");
-
+void * create_slist(FILE *file) {
     char line[max_line_size]={};
     fgets(line, max_line_size, file);
 
-    int scene_x1, scene_y1, scene_x2, scene_y2;
-    if (sscanf(line, "%d %d %d %d", &scene_x1, &scene_y1, &scene_x2, &scene_y2) != 4) {
-        printf("Error: expected 4 integers for scene dimensions\n");
-        fclose(file);
-        return NULL;
-    }
-    Scene * scene = malloc(sizeof(Scene));
-
-    scene->x1 = scene_x1;
-    scene->y1 = scene_y1;
-    scene->x2 = scene_x2;
-    scene->y2 = scene_y2;
-
-    scene->slist = slist_create(sizeof(struct Class*));
+    void * slist = slist_create(sizeof(struct Class*));
 
     while (fgets(line, max_line_size, file)) {
 
@@ -56,9 +40,13 @@ Scene * create_scene(const char * file_name) {
             continue;
         }
 
-        struct Class ** obj = slist_prepend(scene->slist); // Получаем указатель на новый элемент
+        struct Class ** obj = slist_prepend(slist); // Получаем указатель на новый элемент
         *obj = parser_buff;
     }
-    return scene;
+    return slist;
 }
 
+void delete_slist(void * slist) {
+    slist_destroy(slist, delete);
+    free(slist);
+}

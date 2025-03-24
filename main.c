@@ -1,50 +1,39 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <windows.h>
 
 #include "factory.h"
 #include "lib/console.h"
 #include "lib/slist.h"
-#include "lib/new.h"
+#include "new.h"
+
 
 int main(int argc, char *argv[])
 {
-    if (argc == 0) {
-        char *filename = "C:\\Users\\user\\CLionProjects\\2Dscene\\scene.txt";
-        char *fn = "C:\\Users\\user\\CLionProjects\\2Dscene\\scene_img1";
-        Scene * s = create_scene(filename);
+    char *filename;
+    if (argc == 2) {
+        filename = argv[1];
+    } else if (argc == 1) {
+        filename = "C:\\Users\\user\\CLionProjects\\2Dscene\\scene.txt";
+    }
+    else {
+        printf("args error");
+        return -1;
     }
 
-    Scene * s = create_scene(argv[1]);
+    FILE *file = fopen(filename, "r");
 
-    int max_x = 0;
-    int max_y = 0;
+    Scene * scene = create_scene(file);
+    void *slist = create_slist(file);
 
-
-    con_init();
-    con_hideCursor();
-    init_colors();
-
-    // calculate size of field
-    con_getMaxXY(&max_x, &max_y);
-    field_width = max_x;
-    field_height = max_y;
-    // assert(field_width > 2);
-    // assert(field_height > 2);
-
-    initial_draw();
-
-    size_t current = slist_first(s->slist);
-    while (current != slist_stop(s->slist)) {
-        draw(*(struct Class **)slist_current(s->slist, current), s, global_draw);
-        current = slist_next(s->slist, current);
-    }
+    init_scene(scene);
+    draw_scene(scene, slist);
 
     getchar();
 
-    destroy_scene(s);
-    con_clearScr();
-    con_deinit();
+    delete_slist(slist);
+    destroy_scene(scene);
 
     return 0;
 }

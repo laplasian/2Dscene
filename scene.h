@@ -13,17 +13,23 @@
 #define COLOR_BORDER 1
 #define COLOR_FIELD  2
 #define COLOR_POINT  3
+#include <stdio.h>
 
 typedef struct {
     int x1, x2, y1, y2;
     void * slist;
+
 }Scene;
 
-void global_draw(int ch, int color, int x, int y);
-void init_colors();
-void initial_draw();
+void scene_draw_point(Scene * scene, int x, int y, int color, int ch);
+
 void clear_scene(Scene * scene);
 void destroy_scene(Scene * scene);
+void init_scene(Scene * scene);
+Scene * create_scene(FILE *file);
+void draw_scene(Scene * scene, void * slist);
+
+void print_error_at_scene(Scene * scene);
 
 extern int field_width;
 extern int field_height;
