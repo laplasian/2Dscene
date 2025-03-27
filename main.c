@@ -27,8 +27,6 @@ int main(int argc, char *argv[])
     Scene * scene = create_scene(file);
     init_scene(scene);
 
-    print_message_at_scene("  press escape  ");
-
     void *slist = create_slist(file);
     draw_scene(scene, slist);
 

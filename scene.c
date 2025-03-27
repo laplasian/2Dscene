@@ -48,6 +48,7 @@ void initial_draw(Scene * scene) {
             scene_draw_point(scene,i, j, color,ch);
         }
     }
+    print_message_at_scene("  press escape  ");
 }
 
 

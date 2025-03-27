@@ -26,6 +26,7 @@ struct Class * get_obj(const char * line) {
     } else if (strcmp(line, "\n") == 0) {
         return NULL;
     }
+    //print_message_at_scene("  ");
     print_message_at_scene(line);
     return NULL;
 }

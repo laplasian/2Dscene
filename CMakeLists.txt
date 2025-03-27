@@ -4,8 +4,8 @@ project(2Dscene C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(2Dscene main.c
-        lib/new.c
-        lib/new.h
+        new.c
+        new.h
         lib/slist.h
         lib/slist.c
         lib/console.c
