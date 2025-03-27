@@ -8,19 +8,32 @@
 #include "new.h"
 #include "lib/slist.h"
 
-extern int field_width = 0;
-extern int field_height = 0;
+static int field_width = 0;
+static int field_height = 0;
 
 /* Output char using given color pair at given position. */
 void scene_draw_point(Scene * scene, int x, int y, int color, int ch) {
     if (scene == NULL) {
         return;
     }
-    if (scene->x1 < x < scene->x2 && scene->y1 < y < scene->y2) {
+    if (scene->x1 <= x && x <= scene->x2 && scene->y1 <= y && y <= scene->y2) {
         con_gotoXY(x - scene->x1, y - scene->y1);
         con_setColor((short)color);
         con_outTxt("%c", ch);
     }
+}
+
+void scene_print_message(Scene * scene, const char * error) {
+    static int count = 1;
+    for (int i = 0; i < field_width; ++i) {
+        if (error[i] == '\000') {
+            break;
+        }
+        con_gotoXY(i, scene->y2 + count);
+        con_setColor((short)2);
+        con_outTxt("%c", error[i]);
+    }
+    count++;
 }
 
 void init_colors() {
@@ -34,21 +47,18 @@ void initial_draw(Scene * scene) {
     con_gotoXY(TITLE_X, TITLE_Y);
 
     int i, j;
-    for (i = 0; i < field_width; ++i) {
-        for (j = 0; j < field_height; ++j) {
+    for (i = scene->x1; i < scene->x2; ++i) {
+        for (j = scene->y1; j < scene->y2; ++j) {
             int ch;
             int color;
-            if (i == 0 || i == field_width-1 || j == 0 || j == field_height-1) {
+            if (i == scene->x1 || i == scene->x2 - 1 || j == scene->y1 || j == scene->y2 - 1) {
                 ch = CHAR_BORDER;
                 color = COLOR_BORDER;
-            } else {
-                ch = CHAR_FIELD;
-                color = COLOR_FIELD;
+                scene_draw_point(scene,i, j, color,ch);
             }
-            scene_draw_point(scene,i, j, color,ch);
         }
     }
-    print_message_at_scene("  press escape  ");
+    scene_print_message(scene, "press escape to exit   ");
 }
 
 
@@ -57,7 +67,7 @@ Scene * create_scene(FILE *file) {
     fgets(line, max_line_size, file);
 
     int scene_x1, scene_y1, scene_x2, scene_y2;
-    if (sscanf(line, "%d %d %d %d", &scene_x1, &scene_y1, &scene_x2, &scene_y2) != 4) {
+    if (sscanf_s(line, "%d %d %d %d", &scene_x1, &scene_y1, &scene_x2, &scene_y2) != 4) {
         printf("Error: expected 4 integers for scene dimensions\n");
         fclose(file);
         return NULL;
@@ -69,6 +79,10 @@ Scene * create_scene(FILE *file) {
     }
 
     Scene * scene = malloc(sizeof(Scene));
+    if (scene == NULL) {
+        printf("scene malloc error");
+        return NULL;
+    }
 
     scene->x1 = min(scene_x1, scene_x2);
     scene->y1 = min(scene_y1, scene_y2);
@@ -78,17 +92,18 @@ Scene * create_scene(FILE *file) {
 }
 
 void init_scene(Scene * scene) {
-    int max_x = 0;
-    int max_y = 0;
-
     con_init();
     con_hideCursor();
     init_colors();
 
     // calculate size of field
-    con_getMaxXY(&max_x, &max_y);
-    field_width = min(scene->x2-scene->x1, max_x);
-    field_height = min(scene->y2-scene->y1, max_y);
+    con_getMaxXY(&field_width, &field_height);
+
+    if (field_width < scene->x2-scene->x1 || field_height < scene->y2-scene->y1) {
+        scene->x2 = scene->x1 + field_width;
+        scene->y2 = scene->y1 + field_height;
+        scene_print_message(scene, "scene is too large, changed x2 --> x1 + max_x, y2 --> y1 + max_y");
+    }
 
     initial_draw(scene);
 }
@@ -108,16 +123,3 @@ void destroy_scene(Scene * scene) {
     con_deinit();
 }
 
-void print_message_at_scene(const char * error) {
-    static int count = 0;
-    for (int i = 0; i < field_width; ++i) { // min(sizeof(error), field_width)
-        char ch = error[i];
-        if (error[i] == '\000') {
-            break;
-        }
-        con_gotoXY(i, field_height + count + 3);
-        con_setColor((short)3);
-        con_outTxt("%c", error[i]);
-    }
-    count++;
-}

@@ -12,8 +12,8 @@
 #define max_line_size 200
 #define max_objects_size 100
 
-struct Class * get_obj(const char * line);
-void * create_slist(FILE *file);
-void delete_slist(void * slist);
+struct Class * get_obj(const char * line, Scene * scene);
+void * create_slist(FILE *file, Scene * scene);
+void delete_obj(void * data);
 
 #endif //FACTORY_H

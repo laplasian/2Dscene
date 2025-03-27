@@ -19,7 +19,7 @@ static void* point_ctor(void* _self, va_list* app) {
 static void point_draw(const void* _self, Scene * scene) {
     const struct Point* self = _self;
 
-    scene_draw_point(scene, self->x,self->y, COLOR_POINT, '*');
+    scene_draw_point(scene, self->x, self->y, COLOR_POINT, '*');
 }
 
 /*

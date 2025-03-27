@@ -10,10 +10,10 @@
 #include <string.h>
 
 
-struct Class * get_obj(const char * line) {
+struct Class * get_obj(const char * line, Scene * scene) {
     int d1, d2, d3, d4;
     char name[10] = {};
-    int num = sscanf(line, "%s %d %d %d %d", name, &d1, &d2, &d3, &d4);
+    int num = sscanf_s(line, "%s %d %d %d %d", name, 10, &d1, &d2, &d3, &d4);
 
     if (num == 3 && strcmp(name, "point") == 0) {
         return  new(Point, d1, d2);
@@ -26,36 +26,41 @@ struct Class * get_obj(const char * line) {
     } else if (strcmp(line, "\n") == 0) {
         return NULL;
     }
-    //print_message_at_scene("  ");
-    print_message_at_scene(line);
+    char message[max_line_size] = "bad line: ";
+    scene_print_message(scene, strcat(message, line));
     return NULL;
 }
 
-void * create_slist(FILE *file) {
+void * create_slist(FILE *file, Scene * scene) {
     char line[max_line_size]={};
     fgets(line, max_line_size, file);
 
     void * slist = slist_create(sizeof(struct Class*));
+    if (slist == NULL) {
+        printf("slist_create error");
+        return NULL;
+    }
 
     while (fgets(line, max_line_size, file)) {
 
-        struct Class * parser_buff = get_obj(line);
+        struct Class * parser_buff = get_obj(line, scene);
         if (parser_buff == NULL) {
             continue;
         }
 
-        struct Class ** obj = slist_prepend(slist); // Получаем указатель на новый элемент
+        struct Class ** obj = slist_prepend(slist);
+        if (obj == NULL) {
+            return NULL;
+        }
         *obj = parser_buff;
     }
     return slist;
 }
 
-void delete_slist(void * slist) {
-    size_t current = slist_first(slist);
-    while (current != slist_stop(slist)) {
-        void* obj = *(void **)slist_current(slist, current);
-        delete(obj);
-        current = slist_next(slist, current);
+void delete_obj(void * data) {
+    if (data != NULL) {
+        return;
     }
-    slist_destroy(slist, NULL);
+    void* obj = *(void **)data;
+    delete(obj);
 }
