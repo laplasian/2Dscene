@@ -31,6 +31,7 @@ int main(int argc, char *argv[])
     Scene * scene = create_scene(file);
     if (scene == NULL) {
         printf("create scene error");
+        fclose(file);
         return -1;
     }
     init_scene(scene);
@@ -38,6 +39,8 @@ int main(int argc, char *argv[])
     void *slist = create_slist(file, scene);
     if (slist == NULL) {
         printf("create slist error");
+        fclose(file);
+        destroy_scene(scene);
         return -1;
     }
     draw_scene(scene, slist);

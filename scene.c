@@ -8,9 +8,6 @@
 #include "new.h"
 #include "lib/slist.h"
 
-static int field_width = 0;
-static int field_height = 0;
-
 /* Output char using given color pair at given position. */
 void scene_draw_point(Scene * scene, int x, int y, int color, int ch) {
     if (scene == NULL) {
@@ -24,16 +21,15 @@ void scene_draw_point(Scene * scene, int x, int y, int color, int ch) {
 }
 
 void scene_print_message(Scene * scene, const char * error) {
-    static int count = 1;
-    for (int i = 0; i < field_width; ++i) {
+    for (int i = 0; i < scene->max_width; ++i) {
         if (error[i] == '\000') {
             break;
         }
-        con_gotoXY(i, scene->y2 + count);
+        con_gotoXY(i, scene->y2 + scene->message_count);
         con_setColor((short)2);
         con_outTxt("%c", error[i]);
     }
-    count++;
+    scene->message_count++;
 }
 
 void init_colors() {
@@ -69,7 +65,6 @@ Scene * create_scene(FILE *file) {
     int scene_x1, scene_y1, scene_x2, scene_y2;
     if (sscanf_s(line, "%d %d %d %d", &scene_x1, &scene_y1, &scene_x2, &scene_y2) != 4) {
         printf("Error: expected 4 integers for scene dimensions\n");
-        fclose(file);
         return NULL;
     }
 
@@ -88,6 +83,9 @@ Scene * create_scene(FILE *file) {
     scene->y1 = min(scene_y1, scene_y2);
     scene->x2 = max(scene_x1, scene_x2);
     scene->y2 = max(scene_y1, scene_y2);
+
+    scene->message_count = 1;
+
     return scene;
 }
 
@@ -97,11 +95,11 @@ void init_scene(Scene * scene) {
     init_colors();
 
     // calculate size of field
-    con_getMaxXY(&field_width, &field_height);
+    con_getMaxXY(&scene->max_width, &scene->max_height);
 
-    if (field_width < scene->x2-scene->x1 || field_height < scene->y2-scene->y1) {
-        scene->x2 = scene->x1 + field_width;
-        scene->y2 = scene->y1 + field_height;
+    if (scene->max_width < scene->x2-scene->x1 || scene->max_height < scene->y2-scene->y1) {
+        scene->x2 = scene->x1 + scene->max_width;
+        scene->y2 = scene->y1 + scene->max_height;
         scene_print_message(scene, "scene is too large, changed x2 --> x1 + max_x, y2 --> y1 + max_y");
     }
 

@@ -43,22 +43,22 @@ void * create_slist(FILE *file, Scene * scene) {
 
     while (fgets(line, max_line_size, file)) {
 
-        struct Class * parser_buff = get_obj(line, scene);
-        if (parser_buff == NULL) {
+        struct Class * _obj = get_obj(line, scene);
+        if (_obj == NULL) {
             continue;
         }
 
-        struct Class ** obj = slist_prepend(slist);
-        if (obj == NULL) {
+        struct Class ** pobj = slist_prepend(slist);
+        if (pobj == NULL) {
             return NULL;
         }
-        *obj = parser_buff;
+        *pobj = _obj;
     }
     return slist;
 }
 
 void delete_obj(void * data) {
-    if (data != NULL) {
+    if (data == NULL) {
         return;
     }
     void* obj = *(void **)data;

@@ -17,6 +17,8 @@
 
 typedef struct {
     int x1, x2, y1, y2;
+    int message_count;
+    int max_width, max_height;
 }Scene;
 
 Scene * create_scene(FILE *file);
