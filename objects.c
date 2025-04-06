@@ -39,7 +39,7 @@ static void* hline_ctor(void* _self, va_list* app) {
 static void hline_draw(const void* _self, Scene * scene) {
     const struct Hline* self = _self;
 
-    for (int i = self->x1; i < self->x2; ++i) {
+    for (int i = self->x1; i <= self->x2; ++i) {
         scene_draw_point(scene,  i, self->y,COLOR_POINT,  '-');
     }
 }
@@ -61,7 +61,7 @@ static void* vline_ctor(void* _self, va_list* app) {
 static void vline_draw(const void* _self, Scene * scene) {
     const struct Vline* self = _self;
 
-    for (int i = self->y1; i < self->y2; ++i) {
+    for (int i = self->y1; i <= self->y2; ++i) {
         scene_draw_point(scene,  self->x, i, COLOR_POINT, '|');
     }
 }
@@ -84,11 +84,11 @@ static void* rect_ctor(void* _self, va_list* app) {
 static void rect_draw(const void* _self, Scene * scene) {
     const struct Rect* self = _self;
 
-    for (int i = self->x1; i < self->x2; ++i) {
+    for (int i = self->x1; i <= self->x2; ++i) {
         scene_draw_point(scene,  i, self->y1, COLOR_POINT, '-');
         scene_draw_point(scene,  i, self->y2,COLOR_POINT, '-');
     }
-    for (int j = self->y1; j < self->y2; ++j) {
+    for (int j = self->y1; j <= self->y2; ++j) {
         scene_draw_point(scene,  self->x1, j,COLOR_POINT,  '|');
         scene_draw_point(scene,  self->x2, j, COLOR_POINT, '|');
     }

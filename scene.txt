@@ -3,8 +3,9 @@ point 10 20
 point 12 22
 point 14 24
 point 16 26
-hline 15 20 20
-vline 30 30 40
+hline 35 40 10
+vline 6 10 50
+vline 6 7 60
 
 rect 8 8 20 20
 

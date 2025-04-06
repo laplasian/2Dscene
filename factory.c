@@ -18,11 +18,11 @@ struct Class * get_obj(const char * line, Scene * scene) {
     if (num == 3 && strcmp(name, "point") == 0) {
         return  new(Point, d1, d2);
     } else if (num == 5 && strcmp(name, "rect") == 0) {
-        return  new(Rect, min(d1,d2), max(d1,d2), min(d3,d4), max(d3,d4));
+        return  new(Rect, min(d1,d3), min(d2,d4), max(d1,d3), max(d2,d4)); // rect x1 y1 x2 y2
     } else if (num == 4 && strcmp(name, "hline") == 0) {
-        return  new(Hline, d1, min(d2, d3), max(d2, d3));
+        return  new(Hline, min(d1, d2), max(d1, d2), d3); // hline x1 x2 y
     } else if (num == 4 && strcmp(name, "vline") == 0) {
-        return  new(Vline, min(d1, d2), max(d1, d2), d3);
+        return  new(Vline, min(d1, d2), max(d1, d2), d3); // vline y1 y2 x
     } else if (strcmp(line, "\n") == 0) {
         return NULL;
     }
@@ -33,7 +33,6 @@ struct Class * get_obj(const char * line, Scene * scene) {
 
 void * create_slist(FILE *file, Scene * scene) {
     char line[max_line_size]={};
-    fgets(line, max_line_size, file);
 
     void * slist = slist_create(sizeof(struct Class*));
     if (slist == NULL) {
