@@ -13,8 +13,8 @@ void scene_draw_point(Scene * scene, int x, int y, int color, int ch) {
     if (scene == NULL) {
         return;
     }
-    if (scene->x1 <= x && x <= scene->x2 && scene->y1 <= y && y <= scene->y2) {
-        con_gotoXY(x - scene->x1, y - scene->y1);
+    if (scene->x1 <= x && x < scene->x2 - 2 && scene->y1 <= y && y < scene->y2 - 2) {
+        con_gotoXY(x - scene->x1 + 1, y - scene->y1 + 1);
         con_setColor((short)color);
         con_outTxt("%c", ch);
     }
@@ -50,7 +50,9 @@ void initial_draw(Scene * scene) {
             if (i == scene->x1 || i == scene->x2 - 1 || j == scene->y1 || j == scene->y2 - 1) {
                 ch = CHAR_BORDER;
                 color = COLOR_BORDER;
-                scene_draw_point(scene,i, j, color,ch);
+                con_gotoXY(i - scene->x1, j - scene->y1);
+                con_setColor((short)color);
+                con_outTxt("%c", ch);
             }
         }
     }
